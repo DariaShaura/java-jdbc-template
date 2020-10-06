@@ -9,7 +9,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @ComponentScan(basePackages = "com.epam.izh.rd.online.autcion")
@@ -26,7 +29,8 @@ public class AppContextTest {
 
     @Test
     @DisplayName("Бин DataSource успешно создан")
-    public void dataSourceTest() {
+    public void dataSourceTest()
+        throws SQLException {
         assertDoesNotThrow(() -> dataSource.getConnection().createStatement().execute("SELECT 1 FROM users"), "При доступе к БД произошла ошибка");
     }
 
